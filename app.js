@@ -24,7 +24,7 @@ app.get('/characters/:name', async (req, res) => {
     const url = `https://rickandmortyapi.com/api/character/?name=${name}`;
     try {
         const response = await axios.get(url);
-        const {name, status, species, gender, origin:{name: originName}, image} = response.data.results[0];
+        const {name, status, species, gender, origin:{name: originName}, image} = response.data.results[0]; //i am only targeting the first element of the array -> [0], that's why the other ricks are not showing
         res.json({name, status, species, gender, origin:{name: originName}, image})
     } catch (ERROR) {
         res.status(404).json({error: 'Character not found'});
